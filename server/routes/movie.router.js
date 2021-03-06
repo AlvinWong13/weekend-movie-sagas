@@ -3,8 +3,11 @@ const router = express.Router();
 const pool = require('../modules/pool')
 
 router.get('/', (req, res) => {
-
-  const query = `SELECT * FROM movies ORDER BY "title" ASC`;
+  const id = req.params.id
+  const sqlText = `
+    SELECT * FROM "movies".title, "movies".poster, "movies".description from "movies 
+      WHERE "movies.id = $1 ORDER BY "title" ASC
+    `;
   pool.query(query)
     .then( result => {
       res.send(result.rows);
