@@ -16,7 +16,7 @@ function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchAllMovies);
     yield takeEvery('GET_DETAILS', getDetails);
     yield takeEvery('GET_GENRES', getGenres)
-    yield takeEvery('SET_GENRE', selectGenre)
+    yield takeEvery('SET_GENRE_OPTIONS', selectGenre)
 }
 
 function* fetchAllMovies() {
@@ -131,10 +131,10 @@ const storeInstance = createStore(
 sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(
-    <React.StrictMode>
-        <Provider store={storeInstance}>
-        <App />
-        </Provider>
-    </React.StrictMode>,
-    document.getElementById('root')
+  <React.StrictMode>
+    <Provider store={storeInstance}>
+      <App />
+    </Provider>
+  </React.StrictMode>,
+document.getElementById('root')
 );

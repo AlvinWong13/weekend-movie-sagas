@@ -22,7 +22,7 @@ function MovieList() {
 
     useEffect(() => {
         dispatch({ 
-          type: 'FETCH_MOVIES' 
+          type: 'SET_GENRE_OPTIONS' 
         });
     }, []);
 
