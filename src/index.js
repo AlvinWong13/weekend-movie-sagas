@@ -66,7 +66,7 @@ const genres = (state = [], action) => {
 }
 
 // Used to handle details for movies
-const details = ( state = 0, action ) => {
+const details = ( state = [], action ) => {
     switch (action.type) {
       case 'SEE_DETAILS':
           return action.payload;
