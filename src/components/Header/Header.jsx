@@ -73,11 +73,13 @@ const handleClickAway = () => {
             onClick={() => setOpenForm(true)}>
             Add Movie
           </Button>
+          <div className="typeHeader">
           <Typography 
             variant="h5" 
             className={classes.title}>
             The Movies Saga!
           </Typography>
+          </div>
           <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>
