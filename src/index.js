@@ -17,6 +17,7 @@ function* rootSaga() {
     yield takeEvery('GET_DETAILS', getDetails);
     yield takeEvery('GET_GENRES', getGenres)
     yield takeEvery('SET_GENRE_OPTIONS', selectGenre)
+    yield takeEvery('POST_MOVIE', postNewMovie)
 }
 
 function* fetchAllMovies() {
@@ -56,6 +57,15 @@ function* getGenres(action) {
   }
   catch (err) {
     console.log('Error getting genres', err)
+  }
+}
+
+function* postNewMovie(action) {
+  try {
+    const response = yield axios.post('/api/movie', actionpayload);
+  }
+  catch (err) {
+    console.log('Error posting new movie', err)
   }
 }
 

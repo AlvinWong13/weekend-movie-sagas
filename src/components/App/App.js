@@ -1,9 +1,10 @@
 import {HashRouter as Router, Route} from 'react-router-dom';
 import './App.css';
 import Header from '../Header/Header';
+import MovieForm from '../MovieForm/MovieForm';
 import MovieList from '../MovieList/MovieList';
 import Details from '../Details/Details';
-import MovieForm from '../MovieForm/MovieForm';
+
 
 function App() {
   return (

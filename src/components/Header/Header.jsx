@@ -87,7 +87,7 @@ function handleListKeyDown(event) {
           )}
         </Popper>
           <Typography 
-            variant="h6" 
+            variant="h5" 
             className={classes.title}>
             The Movies Saga!
           </Typography>

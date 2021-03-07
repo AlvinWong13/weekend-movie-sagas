@@ -20,15 +20,21 @@ function MovieList() {
       history.push('/details')
     }
 
+    const toForm =() => {
+      history.push('/addMovie')
+    }
+
     useEffect(() => {
         dispatch({ 
-          type: 'SET_GENRE_OPTIONS' 
+          type: 'FETCH_MOVIES' 
         });
     }, []);
 
     return (
         <main>
             <h1>MovieList</h1>
+            <p>Can't find your movie?</p>
+            <button onClick={() => toForm()}>Add Movie</button>
             <section className="movies">
                 {movies.map(movie => {
                     return (
