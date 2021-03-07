@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
-import {useDispatch, useSelector} from 'react-redux'
-import { useHistory } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, TextField } from '@material-ui/core';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -9,6 +8,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button'
+import swal from 'sweetalert';
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -20,12 +20,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function MovieForm() {
+function MovieForm(props) {
     const genreDropdown = useSelector(store => store.genreDropdown)
     const dispatch = useDispatch();
-    const history = useHistory();
     const [newMovie, setNewMovie] = useState({ title: '', poster: '', description: '', genre_id: '' })
     const classes = useStyles();
+    const { setOpenForm } = props;
 
     useEffect(() => {
       dispatch({
@@ -36,12 +36,21 @@ function MovieForm() {
     const submitMovie = (submit, event) => {
       event.preventDefault()
       if(submit) {
+        swal({
+          title:"Thank You!",
+          text: "You added a new movie!",
+          icon: "success",
+          button: "OK",
+        })
         dispatch({
           type: 'POST_MOVIE',
           payload: newMovie
         })
         setNewMovie({ title: '', poster: '', description: '', genre_id: ''})
-        history.push('/')
+        setOpenForm(false)
+        dispatch({ 
+          type: 'FETCH_MOVIES' 
+        });
       }
     }
 
@@ -65,7 +74,7 @@ function MovieForm() {
     }
 
     return (
-      <form>
+      <form onSubmit={submitMovie}>
         <Grid container spacing={2}> 
           <Grid item xs={6}>
             <TextField required

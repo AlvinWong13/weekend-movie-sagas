@@ -1,6 +1,7 @@
 import {HashRouter as Router, Route} from 'react-router-dom';
 import './App.css';
-import { makeStyles, createMuiTheme, ThemeProvider } from '@material-ui/core';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core';
+import CssBaseline from "@material-ui/core/CssBaseline";
 import Header from '../Header/Header';
 import MovieForm from '../MovieForm/MovieForm';
 import MovieList from '../MovieList/MovieList';
@@ -16,14 +17,17 @@ const theme = createMuiTheme({
       main: "#f83245",
       light: '#f8324526'
     },
-    background: {
-      default: "#f4f5fd"
-    },
   },
   overrides:{
-    MuiAppBar:{
-      root:{
-        transform:'translateZ(0)'
+    MuiCssBaseline: {
+      "@global": {
+        body: {
+          backgroundImage: 
+            "url(https://i.pinimg.com/originals/fa/72/7a/fa727ae20b91dd1ec947822c0d0cc5e2.jpg)",
+          backgroundRepeat: "no-repeat",
+          backgroundAttachment: "fixed",
+          backgroundSize: "cover"
+        }
       }
     }
   },
@@ -34,21 +38,12 @@ const theme = createMuiTheme({
   }
 })
 
-
-const useStyles = makeStyles({
-  appMain: {
-    paddingLeft: '320px',
-    width: '100%'
-  }
-})
-
-
 function App() {
-  const classes = useStyles();
   return (
     <Router>
       <ThemeProvider theme={theme} >
-        <div className="App">
+        <div className="App" >
+          <CssBaseline />
 
           <Header />
 

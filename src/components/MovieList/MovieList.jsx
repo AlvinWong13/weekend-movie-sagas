@@ -2,9 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import './MovieList.css';
-import PopupForm from '../PopupForm/PopupForm';
 import PopupDetails from '../PopupDetails/PopupDetails';
-import MovieForm from '../MovieForm/MovieForm';
 import Details from '../Details/Details';
 
 
@@ -12,7 +10,6 @@ function MovieList() {
     const history = useHistory();
     const dispatch = useDispatch();
     const movies = useSelector(store => store.movies);
-    const [openForm, setOpenForm] = useState(false);
 
     const viewDetails = (id) => {
       dispatch({
@@ -26,10 +23,6 @@ function MovieList() {
       history.push('/details')
     }
 
-    const toForm =() => {
-      history.push('/addMovie')
-    }
-
     useEffect(() => {
         dispatch({ 
           type: 'FETCH_MOVIES' 
@@ -38,10 +31,8 @@ function MovieList() {
 
     return (
         <main>
-          <section className="addMovieNav">
+          <section className="movieListHeader">
             <h1>MovieList</h1>
-            <p>Can't find your movie?</p>
-            <button onClick={() => setOpenForm(true)}>Add Movie</button>
           </section>
             <section className="movies">
                 {movies.map(movie => {
@@ -56,13 +47,6 @@ function MovieList() {
                     );
                 })}
             </section>
-            <PopupForm
-            title="Add a New Movie"
-            openForm = {openForm}
-            setOpenForm = {setOpenForm}
-            >
-              <MovieForm />
-            </PopupForm>
         </main>
 
     );
