@@ -33,14 +33,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// function to add button to scroll to top if list is longer
 function ScrollTop(props) {
 const { children, window } = props;
+// use multi styling
 const classes = useStyles();
+// trigger new button window when scrolled
 const trigger = useScrollTrigger({
   target: window ? window() : undefined,
     disableHysteresis: true,
     threshold: 100
 });
+// on button click go back to top of page
 const handleClick = (event) => {
   const anchor = (event.target.ownerDocument || document).querySelector('#back-to-top-anchor');
 
@@ -60,7 +64,9 @@ return (
 
 function Header(props) {
 const classes = useStyles();
+// for login/logout change
 const [open, setOpen] = React.useState(false);
+// for popup open and close, clickaway not working
 const [openForm, setOpenForm = () => {
   setOpen((prev) => !prev);
 },
@@ -69,16 +75,16 @@ const [openForm, setOpenForm = () => {
 const handleClickAway = () => {
   setOpen(false);
 };
-
+// visibility of login/logout buttons
 const [isVisible, setIsVisible] = useState(true);
 
 const anchorRef = React.useRef(null);
 
-// handle menu button open
+// handle login button open
 const handleToggle = () => {
   setIsVisible(!isVisible);
 };
-
+// transparent nav bar when scrolled
 const [navBackground, setNavBackground] = useState('appBarTransparent')
 const navRef = React.useRef()
 navRef.current = navBackground
@@ -91,6 +97,7 @@ useEffect(() => {
             setNavBackground('appBarSolid')
         }
     }
+    // listen for when scroll to handle change
     document.addEventListener('scroll', handleScroll)
     return () => {
         document.removeEventListener('scroll', handleScroll)

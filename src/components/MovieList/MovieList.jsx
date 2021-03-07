@@ -29,12 +29,17 @@ const useStyles = makeStyles((theme) => ({
 
 
 function MovieList() {
+  
     const history = useHistory();
-    const dispatch = useDispatch();
-    const movies = useSelector(store => store.movies);
-    const classes = useStyles();
-    const [spacing, setSpacing] = React.useState(2);
 
+    const dispatch = useDispatch();
+    // get movie data from store
+    const movies = useSelector(store => store.movies);
+    // use styling from theme
+    const classes = useStyles();
+
+    const [spacing, setSpacing] = React.useState(2);
+    // handle click event to view details page for movie
     const viewDetails = (id) => {
       dispatch({
         type: 'GET_DETAILS',
@@ -46,7 +51,7 @@ function MovieList() {
       })
       history.push('/details')
     }
-
+    // get movies to display from store
     useEffect(() => {
         dispatch({ 
           type: 'FETCH_MOVIES' 

@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 import Button from '@material-ui/core/Button';
 
@@ -9,7 +10,9 @@ function Details() {
   const details = useSelector(store => store.details);
   // get genres from server
   const genres = useSelector(store => store.genres);
-
+  // to store data for movie update
+  const [newMovieDetails, setNewMovieDetails] = useState([]);
+  // on click to go back to movie list
   const handleBack = () => {
     history.push('/');
   }
