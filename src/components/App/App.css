@@ -7,34 +7,11 @@
   justify-content: space-around;
 }
 
-.movieForm {
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-  margin: auto;
-  background-color: #b0bec5;
-  padding: 15px;
-  border-radius: 15px;;
-}
-
-.textInput {
-  display: flex;
-  justify-content: space-around;
-  padding: 20px
-}
-
 .details-description {
   width: 600px;
   height: 350px;
   margin: auto;
   padding: 8px;
-}
-
-.descriptionInput {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  padding: 20px
 }
 
 textarea {

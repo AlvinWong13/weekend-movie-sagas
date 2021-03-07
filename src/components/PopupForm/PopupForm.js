@@ -20,7 +20,7 @@ function PopupForm(props) {
   const classes = useStyles();
 
   return (
-    <Dialog open={openForm} maxWidth="md" classes={{ paper :classes.dialogWrapper }}>
+    <Dialog open={openForm} fullWidth maxWidth="md" classes={{ paper :classes.dialogWrapper }}>
         <DialogTitle>
             <div style={{display: 'flex'}}>
               <Typography variant="h5" component="div" style={{flexGrow:1}}>

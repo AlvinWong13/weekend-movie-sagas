@@ -13,19 +13,22 @@ function MovieList() {
     const dispatch = useDispatch();
     const movies = useSelector(store => store.movies);
     const [openForm, setOpenForm] = useState(false);
-    const [openDetails, 
-      setOpenDetails = (id) => {
-        dispatch({
-          type: 'GET_DETAILS',
-          payload: id
-        })
-        dispatch({
-          type: 'GET_GENRES',
-          payload: id
-        })
-        history.push('/details')
-      }
-    ] = useState(false);
+
+    const viewDetails = (id) => {
+      dispatch({
+        type: 'GET_DETAILS',
+        payload: id
+      })
+      dispatch({
+        type: 'GET_GENRES',
+        payload: id
+      })
+      history.push('/details')
+    }
+
+    const toForm =() => {
+      history.push('/addMovie')
+    }
 
     useEffect(() => {
         dispatch({ 
@@ -45,7 +48,7 @@ function MovieList() {
                     return (
                         <div
                           key={movie.id} 
-                          onClick={() => setOpenDetails(movie.id)}
+                          onClick={() => viewDetails(movie.id)}
                           className="movieCard">
                             <h3>{movie.title}</h3>
                             <img src={movie.poster} alt={movie.title} className="poster"/>
@@ -53,13 +56,6 @@ function MovieList() {
                     );
                 })}
             </section>
-            <PopupDetails
-            openDetails = {openDetails}
-            setOpenDetails = {setOpenDetails}
-            >
-              <Details />
-            </PopupDetails>
-
             <PopupForm
             title="Add a New Movie"
             openForm = {openForm}
