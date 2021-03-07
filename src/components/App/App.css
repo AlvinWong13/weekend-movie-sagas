@@ -2,13 +2,23 @@
   text-align: center;
 }
 
-.movieListHeader {
-  padding: 10px;
-  position: relative;
-  top: 15px;
+h1 {
+  color: white;
+  padding-top: 40px;
+}
+
+.detailView {
+  margin: auto;
+  width: 40%;
+  height: 40%;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
 }
 
 .details-description {
+  color: white;
+  font-weight: bolder;
+  font-size: medium;
   width: 600px;
   height: 350px;
   margin: auto;
@@ -31,6 +41,11 @@
 }
 
 .movieCard:hover {
+  box-shadow: 6px 6px 6px rgb(94, 94, 94);
+  transition: .2s;
+}
+
+.photo:hover {
   box-shadow: 6px 6px 6px rgb(94, 94, 94);
   transition: .2s;
 }

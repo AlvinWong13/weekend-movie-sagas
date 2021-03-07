@@ -13,8 +13,7 @@ import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import Zoom from '@material-ui/core/Zoom';
 import Fab from '@material-ui/core/Fab';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-import Avatar from '@material-ui/core/Avatar';
-import Popper from '@material-ui/core/Popper';
+import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -108,9 +107,11 @@ useEffect(() => {
             Add Movie
           </Button>
           <Typography 
-            variant="h5" 
+            variant="h4" 
             className={classes.title}>
-            The Movies Saga!
+            <Box textAlign="center" fontWeight="fontWeightBold">
+              The Movies Saga!
+            </Box>
           </Typography>
           {isVisible ? (
           <Button color="inherit" onClick={handleToggle}>Login</Button>
