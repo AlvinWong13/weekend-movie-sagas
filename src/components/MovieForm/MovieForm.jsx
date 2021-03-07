@@ -73,6 +73,7 @@ function MovieForm() {
               id="outlined-size-small"
               defaultValue="Normal"
               variant="outlined"
+              fullWidth={true}
               onChange={(event) => handleChange('title', event)}
               value={newMovie.title}
             />
@@ -82,6 +83,7 @@ function MovieForm() {
               id="outlined-size-small"
               defaultValue="Normal"
               variant="outlined"
+              fullWidth={true}
               onChange={(event) => handleChange('poster', event)}
               value={newMovie.poster}
             />
@@ -108,8 +110,8 @@ function MovieForm() {
               maxlength="200"
               label="Movie Description"
               multiline
-              rows={4}
-              columns={4}
+              rows={8}
+              fullWidth={true}
               onChange={(event) => handleChange('description', event)}
               value={newMovie.description}
             />

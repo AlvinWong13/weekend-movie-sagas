@@ -20,7 +20,7 @@ function PopupDetails(props) {
   const classes = useStyles();
 
   return (
-    <Dialog open={openDetails} classes={{ paper :classes.dialogWrapper }}>
+    <Dialog open={openDetails} fullWidth maxWidth="md" classes={{ paper :classes.dialogWrapper }}>
         <DialogTitle>
               <Controls.ActionButton
                 color="secondary"
