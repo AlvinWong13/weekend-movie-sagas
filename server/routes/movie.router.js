@@ -50,6 +50,33 @@ router.get('/', (req, res) => {
 
 });
 
+router.put('/', (req, res) => {
+  const updatedMovie = req.body;
+  const sqlText = `
+  UPDATE movies
+  SET "title" = $1,
+  "poster" = $2,
+  "description" = $3,
+  WHERE id = $4;
+  `;
+
+const sqlValues = [
+  updatedMovie.title,
+  updatedMovie.poster,
+  updatedMovie.description,
+  updatedMovie.id,
+];
+
+pool.query(sqlText, sqlValues)
+  .then(() => {
+    res.sendStatus(200);
+  })
+  .catch(err => {
+    console.log('Error updated movie information', err);
+    res.sendStatus(500);
+  })
+})
+
 router.post('/', (req, res) => {
   console.log(req.body);
   // RETURNING "id" will give us back the id of the created movie
