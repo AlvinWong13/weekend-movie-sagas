@@ -8,10 +8,6 @@
   top: 15px;
 }
 
-.movies {
-  display: flex;
-  justify-content: space-around;
-}
 
 .details-description {
   width: 600px;
@@ -25,14 +21,10 @@
   width: 185px;
 }
 
-.poster {
-  height: 325px;
-  width: auto;
-}
 
 .movieCard {
   width: 13%;
-  height: 375px;
+  height: 358px;
   background-color: #f12f2f;
   margin: 10px;
   border-radius: 10px;
