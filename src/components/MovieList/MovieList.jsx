@@ -7,6 +7,7 @@ import PopupDetails from '../PopupDetails/PopupDetails';
 import MovieForm from '../MovieForm/MovieForm';
 import Details from '../Details/Details';
 
+
 function MovieList() {
     const history = useHistory();
     const dispatch = useDispatch();
@@ -44,7 +45,7 @@ function MovieList() {
                     return (
                         <div
                           key={movie.id} 
-                          onClick={() => setOpenDetails(true, movie.id)}
+                          onClick={() => setOpenDetails(movie.id)}
                           className="movieCard">
                             <h3>{movie.title}</h3>
                             <img src={movie.poster} alt={movie.title} className="poster"/>
@@ -58,7 +59,7 @@ function MovieList() {
             >
               <Details />
             </PopupDetails>
-            
+
             <PopupForm
             title="Add a New Movie"
             openForm = {openForm}
