@@ -13,10 +13,11 @@ const useStyles = makeStyles(theme => ({
       paddingRight: '0px'
     }
 }))
-
+// function to handle popup for form
 function PopupForm(props) {
-
+  // set data for form as props
   const { title, children, openForm, setOpenForm } = props;
+  // use styling for theme
   const classes = useStyles();
 
   return (

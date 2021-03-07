@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool')
 
+
 router.get('/:id', (req, res) => {
   const id = req.params.id
   const sqlText = `
@@ -17,7 +18,7 @@ router.get('/:id', (req, res) => {
       res.sendStatus(500)
     })
 });
-
+// get route to get genres matching movies
 router.get('/genre/:id', (req, res) => {
   const id = req.params.id;
   const sqlText = `
@@ -35,7 +36,7 @@ router.get('/genre/:id', (req, res) => {
     res.sendStatus(500);
   })
 });
-
+// get route to get movies from DB
 router.get('/', (req, res) => {
 
   const query = `SELECT * FROM movies ORDER BY "title" ASC`;
@@ -49,6 +50,33 @@ router.get('/', (req, res) => {
     })
 
 });
+// put router to edit movie information
+router.put('/', (req, res) => {
+  const updatedMovie = req.body;
+  const sqlText = `
+  UPDATE movies
+  SET "title" = $1,
+  "poster" = $2,
+  "description" = $3,
+  WHERE id = $4;
+  `;
+
+const sqlValues = [
+  updatedMovie.title,
+  updatedMovie.poster,
+  updatedMovie.description,
+  updatedMovie.id,
+];
+
+pool.query(sqlText, sqlValues)
+  .then(() => {
+    res.sendStatus(200);
+  })
+  .catch(err => {
+    console.log('Error updated movie information', err);
+    res.sendStatus(500);
+  })
+})
 
 router.post('/', (req, res) => {
   console.log(req.body);

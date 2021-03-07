@@ -14,6 +14,7 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
+// function to handle popup for details
 function PopupDetails(props) {
 
   const { children, openDetails, setOpenDetails } = props;

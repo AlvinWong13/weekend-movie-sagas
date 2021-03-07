@@ -21,39 +21,50 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function MovieForm(props) {
+    // import library from store
     const genreDropdown = useSelector(store => store.genreDropdown)
+    
     const dispatch = useDispatch();
+    // store data for movie form
     const [newMovie, setNewMovie] = useState({ title: '', poster: '', description: '', genre_id: '' })
+    // use multi styling
     const classes = useStyles();
+    // bring prop from movie list to close popup
     const { setOpenForm } = props;
 
+    // send data to store when form is completed
     useEffect(() => {
       dispatch({
         type: 'GET_GENRE_OPTIONS'
       });
     }, []);
 
+    // verify movie submition
     const submitMovie = (submit, event) => {
       event.preventDefault()
       if(submit) {
+        dispatch({
+          type: 'POST_MOVIE',
+          payload: newMovie
+        })
+        // clear input values
+        setNewMovie({ title: '', poster: '', description: '', genre_id: ''})
+        // close popup and back to movie list
+        setOpenForm(false)
+        dispatch({
+          type: 'FETCH_MOVIES' 
+        });
+        // let user know movie input was successful
         swal({
           title:"Thank You!",
           text: "You added a new movie!",
           icon: "success",
           button: "OK",
         })
-        dispatch({
-          type: 'POST_MOVIE',
-          payload: newMovie
-        })
-        setNewMovie({ title: '', poster: '', description: '', genre_id: ''})
-        setOpenForm(false)
-        dispatch({ 
-          type: 'FETCH_MOVIES' 
-        });
       }
     }
 
+    // handle event changes when typing in form
     function handleChange(key, event) {
       switch(key) {
         case 'title':
