@@ -18,7 +18,7 @@ function Details() {
         return(
           <div key={info.title}>
               <h1>{info.title}</h1>
-              <img src={info.poster} alt={info.title}></img>
+              <img src={info.poster} alt={info.title} onClick={() => handleBack()}></img>
               <p>{info.description}</p>
           </div>
         )
@@ -28,7 +28,6 @@ function Details() {
           <p key={genre.name}>{genre.name}</p>
         )
       })}
-      <button onClick={() => handleBack()}>Back to Movies</button>
     </>
   )
 }
