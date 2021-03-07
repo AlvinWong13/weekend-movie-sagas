@@ -19,7 +19,7 @@ function Details() {
           <div key={info.title}>
               <h1>{info.title}</h1>
               <img src={info.poster} alt={info.title} onClick={() => handleBack()}></img>
-              <p>{info.description}</p>
+              <p className="details-description">{info.description}</p>
           </div>
         )
       })}
