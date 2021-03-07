@@ -48,7 +48,8 @@ function MovieForm() {
     return (
       <div>
         <h2>Add a New Movie</h2>
-      <form>
+      <form className="movieForm">
+        <div className="textInput">
         <input
           type="text"
           placeholder="Title"
@@ -61,6 +62,9 @@ function MovieForm() {
           onChange={(event) => handleChange('poster', event)}
           value={newMovie.poster}
         />
+        </div>
+        <div className="descriptionInput">
+        <label htmlFor="description">Description:</label>
         <textarea
           type="text"
           maxlength="200"
@@ -68,6 +72,7 @@ function MovieForm() {
           onChange={(event) => handleChange('description', event)}
           value={newMovie.description}
         ></textarea>
+        <label htmlFor="genre">Genre:</label>
         <select
           name="genre"
           id="genre"
@@ -80,6 +85,7 @@ function MovieForm() {
                   )
                 })}
           </select>
+          </div>
           <div className="buttons">
             <button onClick={(event) => submitMovie(true, event)}>Submit</button>
           </div>

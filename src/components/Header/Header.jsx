@@ -13,24 +13,55 @@ import Grow from '@material-ui/core/Grow';
 import Popper from '@material-ui/core/Popper';
 import Paper from '@material-ui/core/Paper';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import useScrollTrigger from "@material-ui/core/useScrollTrigger";
+import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+import Zoom from '@material-ui/core/Zoom';
+import Fab from '@material-ui/core/Fab';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
   menuButton: {
-    marginRight: theme.spacing(2),
+    marginRight: theme.spacing(1),
   },
   title: {
     flexGrow: 1,
   },
 }));
 
-function Header() {
+function ScrollTop(props) {
+const { children, window } = props;
+const classes = useStyles();
+const trigger = useScrollTrigger({
+  target: window ? window() : undefined,
+    disableHysteresis: true,
+    threshold: 100,
+});
+const handleClick = (event) => {
+  const anchor = (event.target.ownerDocument || document).querySelector('#back-to-top-anchor');
+
+  if (anchor) {
+    anchor.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+};
+
+return (
+  <Zoom in={trigger}>
+    <div onClick={handleClick} role="presentation" className={classes.root}>
+      {children}
+    </div>
+  </Zoom>
+);
+}
+
+function Header(props) {
 const classes = useStyles();
 // handle menu button in local state
 const [open, setOpen] = React.useState(false);
 const anchorRef = React.useRef(null);
+
+
 
 // handle menu button open
 const handleToggle = () => {
@@ -55,8 +86,8 @@ function handleListKeyDown(event) {
 }
 
   return (
-    <div className={classes.root}>
-      <AppBar position="static">
+    <div className={classes.root} >
+      <AppBar position="fixed" style={{ background: 'transparent !important', boxShadow: 'none'}}>
         <Toolbar>
           <IconButton 
             edge="start" 
@@ -93,6 +124,11 @@ function handleListKeyDown(event) {
           </Typography>
         </Toolbar>
       </AppBar>
+      <ScrollTop {...props}>
+        <Fab color="secondary" size="small" aria-label="scroll back to top">
+          <KeyboardArrowUpIcon />
+        </Fab>
+      </ScrollTop>
     </div>
   );
 }

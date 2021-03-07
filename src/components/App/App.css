@@ -2,20 +2,64 @@
   text-align: center;
 }
 
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.movies {
+  display: flex;
+  justify-content: space-around;
 }
 
-.App-title {
-  font-size: 1.5em;
+.movieForm {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: auto;
+  background-color: #b0bec5;
+  padding: 15px;
+  border-radius: 15px;;
 }
 
-.App-intro {
-  font-size: large;
+.textInput {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px
+}
+
+.details-description {
+  width: 600px;
+  height: 350px;
+  margin: auto;
+  padding: 8px;
+}
+
+.descriptionInput {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 20px
+}
+
+textarea {
+  padding: 10px;
+  margin: 10px;
+}
+
+.poster {
+  height: 350px;
+  width: auto;
+}
+
+.movieCard {
+  width: 13%;
+  height: 375px;
+  background-color: #f12f2f;
+  margin: 10px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.movieCard:hover {
+  box-shadow: 6px 6px 6px rgb(94, 94, 94);
+  transition: .2s;
 }
 
 @keyframes App-logo-spin {
