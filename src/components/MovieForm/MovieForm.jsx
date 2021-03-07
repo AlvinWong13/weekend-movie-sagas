@@ -10,7 +10,7 @@ function MovieForm() {
 
     useEffect(() => {
       dispatch({
-        type: 'SELECT_GENRE'
+        type: 'GET_GENRE_OPTIONS'
       });
     }, []);
 
@@ -47,7 +47,6 @@ function MovieForm() {
 
     return (
       <div>
-        <h2>Add a New Movie</h2>
       <form className="movieForm">
         <div className="textInput">
         <input
