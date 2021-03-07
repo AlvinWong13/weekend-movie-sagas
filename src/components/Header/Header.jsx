@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PopupForm from '../PopupForm/PopupForm';
 import MovieForm from '../MovieForm/MovieForm';
 
@@ -13,6 +13,8 @@ import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import Zoom from '@material-ui/core/Zoom';
 import Fab from '@material-ui/core/Fab';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import Avatar from '@material-ui/core/Avatar';
+import Popper from '@material-ui/core/Popper';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,6 +25,12 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
+  },
+  appBarTransparent: {
+    backgroundColor: 'rgba(67, 129, 168,0.5)'
+  },
+  appBarSolid: {
+    backgroundColor: 'rgba(67, 129, 168)'
   },
 }));
 
@@ -63,10 +71,36 @@ const handleClickAway = () => {
   setOpen(false);
 };
 
+const [isVisible, setIsVisible] = useState(true);
+
+const anchorRef = React.useRef(null);
+
+// handle menu button open
+const handleToggle = () => {
+  setIsVisible(!isVisible);
+};
+
+const [navBackground, setNavBackground] = useState('appBarTransparent')
+const navRef = React.useRef()
+navRef.current = navBackground
+useEffect(() => {
+    const handleScroll = () => {
+        const show = window.scrollY > 310
+        if (show) {
+            setNavBackground('appBarTransparent')
+        } else {
+            setNavBackground('appBarSolid')
+        }
+    }
+    document.addEventListener('scroll', handleScroll)
+    return () => {
+        document.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
 
   return (
     <div className={classes.root} >
-      <AppBar position="fixed" style={{ background: 'transparent !important', boxShadow: 'none'}}>
+      <AppBar position="fixed" className={classes[navRef.current]}>
         <Toolbar>
           <Button 
             color="inherit"
@@ -78,7 +112,11 @@ const handleClickAway = () => {
             className={classes.title}>
             The Movies Saga!
           </Typography>
-          <Button color="inherit">Login</Button>
+          {isVisible ? (
+          <Button color="inherit" onClick={handleToggle}>Login</Button>
+          ) : (
+          <Button color="inherit" onClick={handleToggle}>Logout</Button>
+          )}
         </Toolbar>
       </AppBar>
       <ScrollTop {...props}>
